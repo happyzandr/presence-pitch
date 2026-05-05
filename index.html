@@ -886,9 +886,17 @@
     margin-top: 8px;
   }
 
+  .weekly-chart-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
   .route-svg {
     width: 100%;
-    height: 120px;
+    height: 140px;
     display: block;
   }
   .route-info {
@@ -897,11 +905,12 @@
     margin-top: 14px;
     font-family: var(--mono);
     font-size: 11px;
-    color: var(--text-3);
+    color: var(--text-2);
     text-transform: uppercase;
     letter-spacing: 0.12em;
   }
-  .route-info .accent { color: var(--accent); }
+  .route-info .accent { color: var(--accent); font-weight: 700; }
+  .route-info .dim { color: var(--text-3); }
 
   /* ========== VEGAS LOCAL ========== */
   .vegas-grid {
@@ -1697,32 +1706,34 @@
         </div>
       </div>
 
-      <svg class="route-svg" viewBox="0 0 800 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="weekly-chart-label">CLUB DISTANCE BY WEEK</div>
+      <svg class="route-svg" viewBox="0 0 800 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="routeGrad" x1="0" x2="1">
+          <linearGradient id="weekGrad" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#666"/>
             <stop offset="50%" stop-color="#d1f564"/>
             <stop offset="100%" stop-color="#ff5b3d"/>
           </linearGradient>
         </defs>
-        <!-- baseline grid -->
-        <line x1="0" y1="60" x2="800" y2="60" stroke="#1f1f1f" stroke-dasharray="2 6"/>
-        <!-- route -->
-        <path d="M 0 80 L 60 65 L 110 70 L 160 50 L 220 55 L 270 35 L 320 45 L 380 30 L 440 50 L 510 40 L 570 65 L 630 55 L 690 75 L 750 60 L 800 70"
-              fill="none" stroke="url(#routeGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- elevation fill -->
-        <path d="M 0 80 L 60 65 L 110 70 L 160 50 L 220 55 L 270 35 L 320 45 L 380 30 L 440 50 L 510 40 L 570 65 L 630 55 L 690 75 L 750 60 L 800 70 L 800 120 L 0 120 Z"
-              fill="url(#routeGrad)" opacity="0.08"/>
-        <!-- markers -->
-        <circle cx="0" cy="80" r="5" fill="#d1f564"/>
-        <circle cx="380" cy="30" r="4" fill="#fff"/>
-        <circle cx="800" cy="70" r="5" fill="#ff5b3d"/>
+        <!-- baseline + gridlines -->
+        <line x1="0" y1="130" x2="800" y2="130" stroke="#2a2a2a"/>
+        <line x1="0" y1="85" x2="800" y2="85" stroke="#1a1a1a" stroke-dasharray="2 6"/>
+        <line x1="0" y1="40" x2="800" y2="40" stroke="#1a1a1a" stroke-dasharray="2 6"/>
+        <!-- 4 weekly bars · heights mapped to KM totals -->
+        <rect x="40"  y="74" width="140" height="56" fill="url(#weekGrad)" opacity="0.55"/>
+        <rect x="240" y="58" width="140" height="72" fill="url(#weekGrad)" opacity="0.75"/>
+        <rect x="440" y="42" width="140" height="88" fill="url(#weekGrad)"/>
+        <rect x="640" y="50" width="140" height="80" fill="url(#weekGrad)" opacity="0.9"/>
+        <!-- trend line over the bar tops -->
+        <polyline points="110,74 310,58 510,42 710,50"
+                  fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.4"/>
       </svg>
 
       <div class="route-info">
-        <span><span class="accent">●</span> START · Springs Preserve</span>
-        <span>● HALFWAY · top of the loop</span>
-        <span style="color: var(--hot);">● FINISH · coffee bar</span>
+        <span>WK 1 · <span class="dim">28 KM</span></span>
+        <span>WK 2 · <span class="dim">32 KM</span></span>
+        <span class="accent">WK 3 · 35 KM ▲</span>
+        <span>WK 4 · <span class="dim">33.4 KM</span></span>
       </div>
     </div>
   </div>
