@@ -1123,10 +1123,15 @@
     .reason-text, .reason-notes { padding: 24px; }
     .reason-text h3 { font-size: 26px; }
     .reason-text p { font-size: 14px; }
-    .reason-note { padding: 14px 0; grid-template-columns: 30px 1fr; gap: 12px; }
+    .reason-note {
+      padding: 16px 0;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+    }
     .reason-note .pin { width: 26px; height: 26px; font-size: 10px; }
-    .reason-note .body strong { font-size: 14px; }
-    .reason-note .body span { font-size: 13px; }
+    .reason-note .body strong { font-size: 15px; line-height: 1.3; }
+    .reason-note .body span { font-size: 13px; line-height: 1.55; }
 
     .logo-card { aspect-ratio: 1.4; }
     .logo-tag, .logo-name, .logo-pricetag { font-size: 9px; }
