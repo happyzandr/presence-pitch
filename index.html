@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRESENCE / Run Club Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060606;
+    --bg-2: #0d0d0d;
+    --surface: #111111;
+    --surface-2: #161616;
+    --line: #1f1f1f;
+    --line-2: #2a2a2a;
+    --text: #f5f5f5;
+    --text-2: #a8a8a8;
+    --text-3: #666;
+    --accent: #d1f564;
+    --accent-2: #b8e84d;
+    --hot: #ff5b3d;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --display: 'Space Grotesk', 'Inter', sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: #000; }
+
+  /* Grid texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+  /* ========== TOPBAR ========== */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(6,6,6,0.7);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 14px; }
+  .topbar-mark {
+    width: 22px; height: 22px;
+    background-image: url('images/logo-white.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .topbar-right { display: flex; gap: 24px; color: var(--text-3); }
+  .topbar-right .live { color: var(--accent); }
+  .live-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    padding: 80px 0 100px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-stamp {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 32px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .hero-stamp .dot { width: 4px; height: 4px; background: var(--text-3); border-radius: 50%; }
+  .hero-stamp .accent { color: var(--accent); }
+  .wordmark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(72px, 16vw, 232px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+    color: var(--text);
+    position: relative;
+  }
+  .wordmark .glyph-mark {
+    display: inline-block;
+    width: clamp(60px, 13vw, 200px);
+    height: clamp(72px, 15vw, 232px);
+    background-image: url('images/logo-white.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: -0.06em;
+    margin: 0 0.05em;
+  }
+  .hero-tag {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(24px, 4vw, 44px);
+    color: var(--text);
+    margin-bottom: 36px;
+    letter-spacing: -0.02em;
+  }
+  .hero-tag .pipe { color: var(--accent); margin: 0 12px; }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 48px;
+  }
+  .meta-cell {
+    background: var(--bg);
+    padding: 22px 24px;
+  }
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+  .meta-value {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .meta-value .unit {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  .meta-value.lime { color: var(--accent); }
+
+  /* ========== SECTION ========== */
+  .section {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 20px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-top: 12px;
+  }
+  .section-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  /* ========== LOGO REVAMP ========== */
+  .logo-reason {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .reason-text {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 36px;
+  }
+  .reason-text .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .reason-text h3 {
+    font-family: var(--display);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 18px;
+  }
+  .reason-text h3 .lime { color: var(--accent); }
+  .reason-text p {
+    color: var(--text-2);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .reason-text p strong { color: var(--text); font-weight: 600; }
+
+  .reason-notes {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .reason-note {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .reason-note:first-of-type { padding-top: 4px; }
+  .reason-note:last-of-type { border-bottom: none; padding-bottom: 4px; }
+  .reason-note .pin {
+    width: 28px; height: 28px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .reason-note .body { font-size: 14px; }
+  .reason-note .body strong {
+    display: block;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .reason-note .body span { color: var(--text-2); line-height: 1.5; }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .logo-card {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  .logo-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .logo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 18%;
+    transition: transform 0.6s ease;
+  }
+  .logo-card:hover img {
+    transform: scale(1.05);
+  }
+  .logo-tag {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--text-3);
+    text-transform: uppercase;
+  }
+  .logo-tag .num { color: var(--accent); margin-right: 8px; }
+  .logo-name {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .logo-pricetag {
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+  }
+
+  .merch-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .merch-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    position: relative;
+    min-height: 420px;
+  }
+  .merch-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .merch-side {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .merch-side h3 {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .merch-side p {
+    color: var(--text-2);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .drop-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .drop-list li {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .drop-list li span:last-child {
+    color: var(--accent);
+  }
+
+  /* ========== EVENTS ========== */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .event-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .event-card:hover { border-color: var(--accent); }
+  .event-tier {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid var(--line-2);
+    color: var(--text-2);
+    margin-bottom: 18px;
+  }
+  .event-tier.free { color: var(--accent); border-color: var(--accent); }
+  .event-tier.member { color: var(--hot); border-color: var(--hot); }
+  .event-tier.private { color: var(--text); border-color: var(--text); }
+  .event-card h3 {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .event-card .when {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 20px;
+  }
+  .event-card p {
+    color: var(--text-2);
+    font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.55;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin: 0 -28px;
+    padding: 0;
+  }
+  .stat-cell {
+    background: var(--surface);
+    padding: 16px 28px;
+  }
+  .stat-cell .lbl {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .stat-cell .val {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .stat-cell .val.lime { color: var(--accent); }
+  .event-vibe {
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .event-vibe .stars { color: var(--accent); letter-spacing: 0.05em; }
+
+  /* ========== TIERS ========== */
+  .tier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .tier-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 36px;
+    position: relative;
+  }
+  .tier-card.member {
+    border-color: var(--accent);
+    background:
+      linear-gradient(180deg, rgba(209,245,100,0.04), transparent 30%),
+      var(--surface);
+  }
+  .tier-card.member::before {
+    content: 'RECOMMENDED';
+    position: absolute;
+    top: -10px;
+    left: 36px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    background: var(--accent);
+    color: #000;
+    padding: 4px 10px;
+    font-weight: 700;
+  }
+  .tier-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tier-card.member .tier-name { color: var(--accent); }
+  .tier-price {
+    font-family: var(--display);
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 6px;
+  }
+  .tier-price .per {
+    font-size: 16px;
+    color: var(--text-3);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .tier-blurb {
+    color: var(--text-2);
+    font-size: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tier-list {
+    list-style: none;
+  }
+  .tier-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .tier-list li:last-child { border-bottom: none; }
+  .tier-list .check {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-weight: 700;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .tier-list .x {
+    color: var(--text-3);
+    font-family: var(--mono);
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .tier-list li.dim {
+    color: var(--text-3);
+    text-decoration: line-through;
+    text-decoration-color: var(--text-3);
+  }
+  .tier-list li strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .tier-list li .lil {
+    display: block;
+    font-size: 12px;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+
+  /* ========== RECEIPT ========== */
+  .receipt {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 36px;
+    font-family: var(--mono);
+    position: relative;
+  }
+  .receipt::before, .receipt::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 14px;
+    background:
+      radial-gradient(circle at 7px 7px, var(--bg) 6px, transparent 7px) repeat-x;
+    background-size: 14px 14px;
+  }
+  .receipt::before { top: -7px; }
+  .receipt::after { bottom: -7px; transform: scaleY(-1); }
+  .receipt-head {
+    text-align: center;
+    border-bottom: 1px dashed var(--line-2);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .receipt-head .brand {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+  .receipt-head .small {
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-top: 6px;
+  }
+  .receipt-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .receipt-row strong { color: var(--text); }
+  .receipt-row .val { color: var(--accent); font-weight: 700; }
+  .receipt-divider {
+    border-top: 1px dashed var(--line-2);
+    margin: 12px 0;
+  }
+  .receipt-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .receipt-total .lime { color: var(--accent); font-size: 18px; }
+  .receipt-foot {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line-2);
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  /* ========== REVENUE MODEL ========== */
+  .rev-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .rev-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 28px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .rev-card.hero-stage {
+    border-color: var(--accent);
+    background:
+      linear-gradient(180deg, rgba(209,245,100,0.04), transparent 30%),
+      var(--surface);
+  }
+  .rev-stage {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .rev-stage-name {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .rev-members {
+    font-family: var(--display);
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--text);
+  }
+  .rev-members-lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    margin-bottom: 22px;
+  }
+  .rev-line {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-2);
+    letter-spacing: 0.04em;
+  }
+  .rev-line:first-of-type { border-top: 1px solid var(--line); }
+  .rev-line .lbl { text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; color: var(--text-3); }
+  .rev-line .val { color: var(--text); font-weight: 600; }
+  .rev-line.in .val { color: var(--text); }
+  .rev-line.out .val { color: var(--text-3); }
+  .rev-net {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--accent);
+    margin-top: auto;
+  }
+  .rev-net .lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .rev-net .num {
+    font-family: var(--display);
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .rev-net .num.red { color: var(--hot); }
+  .rev-net .annual {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .rev-net .annual .accent { color: var(--accent); }
+  .rev-net .annual .accent.red { color: var(--hot); }
+
+  .rev-foot {
+    margin-top: 24px;
+    padding: 24px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .rev-foot-block h5 {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .rev-foot-block p {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 1100px) {
+    .rev-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .rev-grid { grid-template-columns: 1fr; }
+    .rev-foot { grid-template-columns: 1fr; }
+  }
+
+  /* ========== STRAVA SUMMARY ========== */
+  .strava-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 40px;
+  }
+  .strava-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .strava-head .left h3 {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .strava-head .left .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-top: 6px;
+  }
+  .strava-head .right {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    text-align: right;
+  }
+  .strava-head .right .big {
+    display: block;
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .strava-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .ss-cell {
+    background: var(--surface);
+    padding: 22px 18px;
+  }
+  .ss-cell .num {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .ss-cell .num.lime { color: var(--accent); }
+  .ss-cell .lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-top: 8px;
+  }
+
+  .route-svg {
+    width: 100%;
+    height: 120px;
+    display: block;
+  }
+  .route-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .route-info .accent { color: var(--accent); }
+
+  /* ========== VEGAS LOCAL ========== */
+  .vegas-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+  }
+  .vegas-main {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 40px;
+  }
+  .vegas-main h3 {
+    font-family: var(--display);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .vegas-main p {
+    color: var(--text-2);
+    font-size: 15px;
+    margin-bottom: 28px;
+    max-width: 540px;
+  }
+  .spots {
+    list-style: none;
+  }
+  .spots li {
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    font-size: 14px;
+  }
+  .spots li:last-child { border-bottom: 1px solid var(--line); }
+  .spots .num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .spots .name { font-weight: 600; }
+  .spots .meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .vegas-side {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .partner-block h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .partner-block ul {
+    list-style: none;
+  }
+  .partner-block li {
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--text-2);
+    display: flex;
+    justify-content: space-between;
+  }
+  .partner-block li .perk {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  /* ========== CTA ========== */
+  .cta {
+    text-align: center;
+    padding: 120px 0 140px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cta-mark {
+    width: 80px; height: 80px;
+    margin: 0 auto 32px;
+    background-image: url('images/logo-white.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+  }
+  .cta h2 {
+    font-family: var(--display);
+    font-size: clamp(40px, 7vw, 88px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .cta h2 .lime { color: var(--accent); }
+  .cta p {
+    color: var(--text-2);
+    font-size: 18px;
+    max-width: 520px;
+    margin: 0 auto 40px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    padding: 18px 36px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    transition: all 0.3s;
+  }
+  .cta-btn:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  .cta-secondary {
+    display: inline-block;
+    margin-left: 12px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 18px 24px;
+    text-decoration: none;
+    border: 1px solid var(--line-2);
+    transition: border 0.3s;
+  }
+  .cta-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ========== FOOTER ========== */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .topbar-inner { padding: 14px 20px; }
+    .topbar-right { gap: 14px; }
+    .topbar-right > span:not(.live) { display: none; }
+    .hero { padding: 50px 0 70px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .logo-grid { grid-template-columns: 1fr; }
+    .merch-row { grid-template-columns: 1fr; }
+    .events-grid { grid-template-columns: 1fr; }
+    .tier-grid { grid-template-columns: 1fr; }
+    .strava-stats { grid-template-columns: repeat(2, 1fr); }
+    .vegas-grid { grid-template-columns: 1fr; }
+    .section { padding: 60px 0; }
+    .section-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== TOPBAR ========== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <div class="topbar-mark"></div>
+      <span>PRESENCE / Run Club</span>
+    </div>
+    <div class="topbar-right">
+      <span>LAS VEGAS, NV</span>
+      <span>EST. 2026</span>
+      <span class="live"><span class="live-dot"></span>ZANDR CREATIVE V1</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-stamp">
+      <span>36.0395° N</span>
+      <span class="dot"></span>
+      <span>114.9817° W</span>
+      <span class="dot"></span>
+      <span>LAS VEGAS</span>
+      <span class="dot"></span>
+      <span class="accent">CHAPTER 01</span>
+    </div>
+
+    <h1 class="wordmark">
+      PRESENCE
+    </h1>
+
+    <p class="hero-tag">
+      Run. <span class="pipe">/</span> Move. <span class="pipe">/</span> Belong.
+    </p>
+
+    <div class="hero-meta">
+      <div class="meta-cell">
+        <div class="meta-label">Run Club</div>
+        <div class="meta-value">Saturday <span class="unit">/ A.M.</span></div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Member</div>
+        <div class="meta-value lime">$32 <span class="unit">/ MO</span></div>
+      </div>
+      <div class="meta-cell">
+        <div class="meta-label">Free Tier</div>
+        <div class="meta-value">$0 <span class="unit">always</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 01 / LOGO ========== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">01 / NEW MARK</div>
+        <h2 class="section-title">The new logo,<br>three ways.</h2>
+      </div>
+      <div class="section-sub">3 finishes · 1 system</div>
+    </div>
+
+    <div class="logo-reason">
+      <div class="reason-text">
+        <div class="eyebrow">WHY THE REDRAW</div>
+        <h3>The mark has a <span class="lime">secret.</span></h3>
+        <p>Look at it once and you see a <strong>snake head</strong>, locked in and ready to strike. Look again and there is a clean letter <strong>P</strong> hiding in the open space inside the head.</p>
+        <p><strong>P is for Presence.</strong> One symbol. Two meanings. Bold on the outside, smart on the inside. That is the whole brand in one shape.</p>
+      </div>
+      <div class="reason-notes">
+        <div class="reason-note">
+          <div class="pin">A</div>
+          <div class="body"><strong>The snake head.</strong><span>Sharp angles, fangs out, ready to move. It reads as fitness energy from across the room.</span></div>
+        </div>
+        <div class="reason-note">
+          <div class="pin">B</div>
+          <div class="body"><strong>The hidden P.</strong><span>Tucked into the negative space inside the head. You will not catch it on day one. You will never miss it after.</span></div>
+        </div>
+        <div class="reason-note">
+          <div class="pin">C</div>
+          <div class="body"><strong>One system, three finishes.</strong><span>Flat for tees, brushed metal for badges, sculpted 3D for video and the web. Same mark, different surface.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <span class="logo-tag"><span class="num">01</span>FLAT</span>
+        <img src="images/logo-white.png" alt="Presence logo, flat white">
+        <span class="logo-name">SOLID WHITE</span>
+        <span class="logo-pricetag">apparel · print</span>
+      </div>
+      <div class="logo-card">
+        <span class="logo-tag"><span class="num">02</span>METAL</span>
+        <img src="images/logo-silver.png" alt="Presence logo, brushed metal">
+        <span class="logo-name">BRUSHED CHROME</span>
+        <span class="logo-pricetag">badges · pins</span>
+      </div>
+      <div class="logo-card">
+        <span class="logo-tag"><span class="num">03</span>3D</span>
+        <img src="images/logo-3d.png" alt="Presence logo, 3D bevel">
+        <span class="logo-name">SCULPTED 3D</span>
+        <span class="logo-pricetag">video · web</span>
+      </div>
+    </div>
+
+    <div class="merch-row">
+      <div class="merch-card">
+        <img src="images/merch-mockup.png" alt="Presence merch on quarter-zip, water bottle, and tank top">
+      </div>
+      <div class="merch-side">
+        <div>
+          <h3>It looks good on stuff.</h3>
+          <p>The mark holds up across gear, vinyl, and stitched embroidery. Every member gets a piece each month.</p>
+        </div>
+        <ul class="drop-list">
+          <li><span>Drop 01 / Tee</span><span>JUNE</span></li>
+          <li><span>Drop 02 / Cap</span><span>JULY</span></li>
+          <li><span>Drop 03 / Bottle</span><span>AUG</span></li>
+          <li><span>Drop 04 / Quarter Zip</span><span>SEPT</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 02 / EVENTS ========== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">02 / WHAT WE DO</div>
+        <h2 class="section-title">Three event<br>types. One crew.</h2>
+      </div>
+      <div class="section-sub">free · paid · invite</div>
+    </div>
+
+    <div class="events-grid">
+
+      <div class="event-card">
+        <span class="event-tier free">FREE FOR ALL</span>
+        <h3>Saturday Run</h3>
+        <div class="when">Every Saturday · 7:30 A.M.</div>
+        <p>Easy pace, all levels welcome. Show up, run with the group, grab coffee after. The front door of the whole club.</p>
+        <div class="stat-row">
+          <div class="stat-cell">
+            <div class="lbl">Distance</div>
+            <div class="val lime">5.0 KM</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Avg Pace</div>
+            <div class="val">9:30 / MI</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Elevation</div>
+            <div class="val">124 FT</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Coffee After</div>
+            <div class="val lime">YES</div>
+          </div>
+        </div>
+        <div class="event-vibe">
+          <span>VIBE</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <span class="event-tier member">MEMBER ACCESS</span>
+        <h3>Fitness Club</h3>
+        <div class="when">Once or twice a month</div>
+        <p>Trainer-led classes. Yoga, CrossFit-style sets, mobility, and strength. Vendors and machines on site for the day.</p>
+        <div class="stat-row">
+          <div class="stat-cell">
+            <div class="lbl">Frequency</div>
+            <div class="val lime">1 to 2 / MO</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Duration</div>
+            <div class="val">60 MIN</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Coach Led</div>
+            <div class="val lime">YES</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Vendor Booth</div>
+            <div class="val">ON-SITE</div>
+          </div>
+        </div>
+        <div class="event-vibe">
+          <span>SWEAT INDEX</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <span class="event-tier private">INVITE ONLY</span>
+        <h3>Social Events</h3>
+        <div class="when">Pop-up · monthly-ish</div>
+        <p>Small group hangs. Rooftop nights, pool nights, church groups, dinner clubs. Tight crew, real talk, real friends.</p>
+        <div class="stat-row">
+          <div class="stat-cell">
+            <div class="lbl">Cap</div>
+            <div class="val">30 PEOPLE</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Mood</div>
+            <div class="val lime">PRIVATE</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">Member Priority</div>
+            <div class="val lime">YES</div>
+          </div>
+          <div class="stat-cell">
+            <div class="lbl">+1 Guest</div>
+            <div class="val">QUARTERLY</div>
+          </div>
+        </div>
+        <div class="event-vibe">
+          <span>NETWORK</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 03 / TIERS ========== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">03 / PAY STRUCTURE</div>
+        <h2 class="section-title">Pick your<br>tier.</h2>
+      </div>
+      <div class="section-sub">two tiers · keep it simple</div>
+    </div>
+
+    <div class="tier-grid">
+
+      <div class="tier-card">
+        <div class="tier-name">FREE</div>
+        <div class="tier-price">$0<span class="per"> / forever</span></div>
+        <p class="tier-blurb">Show up, run, meet the crew. No card needed.</p>
+        <ul class="tier-list">
+          <li><span class="check">[+]</span><span><strong>Saturday Run Club.</strong> Every week, every level.</span></li>
+          <li><span class="check">[+]</span><span><strong>Coffee meetup</strong> after each run.</span></li>
+          <li><span class="check">[+]</span><span><strong>Group chat / Discord.</strong> Stay in the loop.</span></li>
+          <li class="dim"><span class="x">[—]</span><span>Fitness Club</span></li>
+          <li class="dim"><span class="x">[—]</span><span>Monthly merch</span></li>
+          <li class="dim"><span class="x">[—]</span><span>Pro event photos</span></li>
+          <li class="dim"><span class="x">[—]</span><span>Local partner perks</span></li>
+          <li class="dim"><span class="x">[—]</span><span>Race entry credit</span></li>
+        </ul>
+      </div>
+
+      <div class="tier-card member">
+        <div class="tier-name">MEMBER</div>
+        <div class="tier-price">$32<span class="per"> / month</span></div>
+        <p class="tier-blurb">All in. Gear, classes, photos, perks. Skip a coffee shop visit and it pays for itself.</p>
+        <ul class="tier-list">
+          <li><span class="check">[+]</span><span><strong>Everything in Free,</strong> plus priority check-in.</span></li>
+          <li><span class="check">[+]</span><span><strong>One free piece of merch each month.</strong> Tee, cap, socks, bottle.<span class="lil">retail value about $30</span></span></li>
+          <li><span class="check">[+]</span><span><strong>All Fitness Club sessions,</strong> included.<span class="lil">yoga, strength, mobility, vendor days</span></span></li>
+          <li><span class="check">[+]</span><span><strong>Pro event photos,</strong> delivered in 48 hours.</span></li>
+          <li><span class="check">[+]</span><span><strong>Local partner perks</strong> at coffee, juice, and recovery spots.</span></li>
+          <li><span class="check">[+]</span><span><strong>Members-only Strava club</strong> with monthly leaderboards.</span></li>
+          <li><span class="check">[+]</span><span><strong>One race entry credit</strong> per year (5K or 10K).</span></li>
+          <li><span class="check">[+]</span><span><strong>Priority on Social Event invites</strong> and one guest pass per quarter.</span></li>
+          <li><span class="check">[+]</span><span><strong>Birthday perk</strong> and refer-a-friend free month.</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; margin-top: 40px; font-family: var(--mono); font-size: 11px; color: var(--text-3); letter-spacing: 0.16em; text-transform: uppercase;">
+      annual option · $299 / year · saves you about 2 months
+    </p>
+  </div>
+</section>
+
+<!-- ========== SECTION 04 / RECEIPT ========== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">04 / VALUE MATH</div>
+        <h2 class="section-title">$32 in.<br>About $90 out.</h2>
+      </div>
+      <div class="section-sub">monthly · per member</div>
+    </div>
+
+    <div class="receipt">
+      <div class="receipt-head">
+        <div class="brand">PRESENCE / MEMBER</div>
+        <div class="small">Monthly Value Receipt</div>
+      </div>
+
+      <div class="receipt-row"><span>Free piece of merch</span><span class="val">$30.00</span></div>
+      <div class="receipt-row"><span>Fitness Club access (1 to 2)</span><span class="val">$30.00</span></div>
+      <div class="receipt-row"><span>Pro event photos</span><span class="val">$15.00</span></div>
+      <div class="receipt-row"><span>Local partner perks</span><span class="val">$10.00</span></div>
+      <div class="receipt-row"><span>Race entry credit (annualized)</span><span class="val">$3.50</span></div>
+      <div class="receipt-row"><span>Strava club + leaderboards</span><span class="val">$2.00</span></div>
+
+      <div class="receipt-divider"></div>
+
+      <div class="receipt-row"><strong>Member retail value</strong><span class="val">≈ $90</span></div>
+      <div class="receipt-row"><strong>You pay</strong><span>$32.00</span></div>
+
+      <div class="receipt-total">
+        <span>NET WIN</span>
+        <span class="lime">+ $58 / MO</span>
+      </div>
+
+      <div class="receipt-foot">
+        plus the people · which is the whole point
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 05 / REVENUE MODEL ========== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">05 / REVENUE MODEL</div>
+        <h2 class="section-title">What the<br>money looks like.</h2>
+      </div>
+      <div class="section-sub">monthly · 4 stages of growth</div>
+    </div>
+
+    <div class="rev-grid">
+
+      <div class="rev-card">
+        <div class="rev-stage">STAGE 01</div>
+        <div class="rev-stage-name">SEED</div>
+        <div class="rev-members">50</div>
+        <div class="rev-members-lbl">paid members · $32 / mo</div>
+
+        <div class="rev-line in"><span class="lbl">Money in</span><span class="val">+ $1,600</span></div>
+        <div class="rev-line out"><span class="lbl">Per-member costs</span><span class="val">– $650</span></div>
+        <div class="rev-line out"><span class="lbl">Fixed costs</span><span class="val">– $800</span></div>
+
+        <div class="rev-net">
+          <div class="lbl">Net per month</div>
+          <div class="num">+ $150</div>
+          <div class="annual">per year · <span class="accent">+ $1,800</span></div>
+        </div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stage">STAGE 02</div>
+        <div class="rev-stage-name">BUILDING</div>
+        <div class="rev-members">150</div>
+        <div class="rev-members-lbl">paid members · $32 / mo</div>
+
+        <div class="rev-line in"><span class="lbl">Money in</span><span class="val">+ $4,800</span></div>
+        <div class="rev-line out"><span class="lbl">Per-member costs</span><span class="val">– $1,950</span></div>
+        <div class="rev-line out"><span class="lbl">Fixed costs</span><span class="val">– $800</span></div>
+
+        <div class="rev-net">
+          <div class="lbl">Net per month</div>
+          <div class="num">+ $2,050</div>
+          <div class="annual">per year · <span class="accent">+ $24,600</span></div>
+        </div>
+      </div>
+
+      <div class="rev-card hero-stage">
+        <div class="rev-stage">STAGE 03</div>
+        <div class="rev-stage-name">CRUISING</div>
+        <div class="rev-members">300</div>
+        <div class="rev-members-lbl">paid members · $32 / mo</div>
+
+        <div class="rev-line in"><span class="lbl">Money in</span><span class="val">+ $9,600</span></div>
+        <div class="rev-line out"><span class="lbl">Per-member costs</span><span class="val">– $3,900</span></div>
+        <div class="rev-line out"><span class="lbl">Fixed costs</span><span class="val">– $1,200</span></div>
+
+        <div class="rev-net">
+          <div class="lbl">Net per month</div>
+          <div class="num">+ $4,500</div>
+          <div class="annual">per year · <span class="accent">+ $54,000</span></div>
+        </div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-stage">STAGE 04</div>
+        <div class="rev-stage-name">SCALE</div>
+        <div class="rev-members">600</div>
+        <div class="rev-members-lbl">paid members · $32 / mo</div>
+
+        <div class="rev-line in"><span class="lbl">Money in</span><span class="val">+ $19,200</span></div>
+        <div class="rev-line out"><span class="lbl">Per-member costs</span><span class="val">– $7,800</span></div>
+        <div class="rev-line out"><span class="lbl">Fixed costs</span><span class="val">– $1,800</span></div>
+
+        <div class="rev-net">
+          <div class="lbl">Net per month</div>
+          <div class="num">+ $9,600</div>
+          <div class="annual">per year · <span class="accent">+ $115,200</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rev-foot">
+      <div class="rev-foot-block">
+        <h5>PER-MEMBER COSTS · $13 / MEMBER</h5>
+        <p>Free monthly merch (about $10), race entry credit weighted by real use (about $2), small extras like birthday and referrals (about $1). Race credit math: about 1 in 5 members redeems each year on a 5K or 10K worth around $80.</p>
+      </div>
+      <div class="rev-foot-block">
+        <h5>FIXED COSTS · MOSTLY EVENTS</h5>
+        <p>Fitness Club trainers and vendors, insurance, permits, software. Photographer is free. Starts around $800 a month and grows as we add more events at higher member counts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 06 / STRAVA SUMMARY ========== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">06 / SAMPLE MONTH</div>
+        <h2 class="section-title">A typical<br>month here.</h2>
+      </div>
+      <div class="section-sub">data · last 30 days</div>
+    </div>
+
+    <div class="strava-card">
+      <div class="strava-head">
+        <div class="left">
+          <h3>Crew Roll-Up</h3>
+          <div class="sub">Las Vegas · 30 day window</div>
+        </div>
+        <div class="right">
+          <span class="big">128.4 KM</span>
+          <span>total club distance</span>
+        </div>
+      </div>
+
+      <div class="strava-stats">
+        <div class="ss-cell">
+          <div class="num lime">4</div>
+          <div class="lbl">Saturday<br>runs</div>
+        </div>
+        <div class="ss-cell">
+          <div class="num">2</div>
+          <div class="lbl">Fitness<br>Club</div>
+        </div>
+        <div class="ss-cell">
+          <div class="num">1</div>
+          <div class="lbl">Social<br>night</div>
+        </div>
+        <div class="ss-cell">
+          <div class="num lime">1</div>
+          <div class="lbl">Merch<br>drop</div>
+        </div>
+        <div class="ss-cell">
+          <div class="num">12</div>
+          <div class="lbl">New<br>faces</div>
+        </div>
+      </div>
+
+      <svg class="route-svg" viewBox="0 0 800 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="routeGrad" x1="0" x2="1">
+            <stop offset="0%" stop-color="#666"/>
+            <stop offset="50%" stop-color="#d1f564"/>
+            <stop offset="100%" stop-color="#ff5b3d"/>
+          </linearGradient>
+        </defs>
+        <!-- baseline grid -->
+        <line x1="0" y1="60" x2="800" y2="60" stroke="#1f1f1f" stroke-dasharray="2 6"/>
+        <!-- route -->
+        <path d="M 0 80 L 60 65 L 110 70 L 160 50 L 220 55 L 270 35 L 320 45 L 380 30 L 440 50 L 510 40 L 570 65 L 630 55 L 690 75 L 750 60 L 800 70"
+              fill="none" stroke="url(#routeGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- elevation fill -->
+        <path d="M 0 80 L 60 65 L 110 70 L 160 50 L 220 55 L 270 35 L 320 45 L 380 30 L 440 50 L 510 40 L 570 65 L 630 55 L 690 75 L 750 60 L 800 70 L 800 120 L 0 120 Z"
+              fill="url(#routeGrad)" opacity="0.08"/>
+        <!-- markers -->
+        <circle cx="0" cy="80" r="5" fill="#d1f564"/>
+        <circle cx="380" cy="30" r="4" fill="#fff"/>
+        <circle cx="800" cy="70" r="5" fill="#ff5b3d"/>
+      </svg>
+
+      <div class="route-info">
+        <span><span class="accent">●</span> START · Springs Preserve</span>
+        <span>● HALFWAY · top of the loop</span>
+        <span style="color: var(--hot);">● FINISH · coffee bar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 07 / VEGAS ========== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-num">07 / WHERE WE RUN</div>
+        <h2 class="section-title">Built for<br>this valley.</h2>
+      </div>
+      <div class="section-sub">vegas / clark county</div>
+    </div>
+
+    <div class="vegas-grid">
+
+      <div class="vegas-main">
+        <h3>The starting blocks.</h3>
+        <p>A rotating list of meet-up spots so the routes stay fresh and members keep showing up. Easy parking, shade where we can find it, and somewhere to grab coffee after.</p>
+        <ul class="spots">
+          <li><span class="num">SPOT / 01</span><span class="name">Springs Preserve Loop</span><span class="meta">FLAT · 5K</span></li>
+          <li><span class="num">SPOT / 02</span><span class="name">Lake Las Vegas Promenade</span><span class="meta">SCENIC · 6K</span></li>
+          <li><span class="num">SPOT / 03</span><span class="name">Sunset Park</span><span class="meta">PARK PATHS · 5K</span></li>
+          <li><span class="num">SPOT / 04</span><span class="name">Red Rock Loop (Member Day)</span><span class="meta">HILLY · 8K</span></li>
+          <li><span class="num">SPOT / 05</span><span class="name">Symphony Park / Downtown</span><span class="meta">URBAN · 5K</span></li>
+        </ul>
+      </div>
+
+      <div class="vegas-side">
+        <div class="partner-block">
+          <h4>PARTNER PERKS / WISHLIST</h4>
+          <ul>
+            <li>Local coffee bar <span class="perk">10% OFF</span></li>
+            <li>Cold plunge studio <span class="perk">FREE WK</span></li>
+            <li>Juice / smoothie spot <span class="perk">2-FOR-1</span></li>
+            <li>Recovery / massage <span class="perk">15% OFF</span></li>
+            <li>Local running store <span class="perk">SHOE DEAL</span></li>
+          </ul>
+        </div>
+        <div class="partner-block">
+          <h4>NEW MEMBER FLOW</h4>
+          <ul>
+            <li>Walk in via free run<span class="perk">WK 1</span></li>
+            <li>Get to know faces<span class="perk">WK 2</span></li>
+            <li>First Fitness Club invite<span class="perk">WK 3</span></li>
+            <li>Sign up for Member<span class="perk">WK 4</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <span>PRESENCE / RUN CLUB · LAS VEGAS, NV</span>
+      <span>ZANDR CREATIVE V1 · 2026</span>
+      <span>BUILT WITH PRESENCE</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
