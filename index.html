@@ -1077,15 +1077,147 @@
     .topbar-right { gap: 14px; }
     .topbar-right > span:not(.live) { display: none; }
     .hero { padding: 50px 0 70px; }
-    .hero-meta { grid-template-columns: 1fr 1fr; }
+    .hero-meta { grid-template-columns: repeat(3, 1fr); }
     .logo-grid { grid-template-columns: 1fr; }
+    .logo-reason { grid-template-columns: 1fr; }
+    .logo-card { aspect-ratio: 1.2; }
     .merch-row { grid-template-columns: 1fr; }
     .events-grid { grid-template-columns: 1fr; }
     .tier-grid { grid-template-columns: 1fr; }
-    .strava-stats { grid-template-columns: repeat(2, 1fr); }
     .vegas-grid { grid-template-columns: 1fr; }
     .section { padding: 60px 0; }
     .section-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .rev-foot { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  /* ========== PHONE ========== */
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .topbar-inner { padding: 12px 16px; font-size: 10px; letter-spacing: 0.08em; }
+    .topbar-mark { width: 18px; height: 18px; }
+    .topbar-left { gap: 10px; }
+    .live-dot { width: 6px; height: 6px; margin-right: 6px; }
+
+    .section { padding: 56px 0; }
+    .hero { padding: 36px 0 52px; }
+    .section-head { margin-bottom: 36px; padding-bottom: 16px; }
+    .section-num { font-size: 10px; }
+
+    /* Hero */
+    .hero-stamp {
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      margin-bottom: 24px;
+    }
+    .hero-stamp .dot { width: 3px; height: 3px; }
+    .wordmark { font-size: 18vw; line-height: 0.9; margin-bottom: 18px; }
+    .hero-tag { font-size: 22px; margin-bottom: 28px; }
+    .hero-tag .pipe { margin: 0 6px; }
+    .hero-meta { grid-template-columns: 1fr; margin-top: 32px; }
+    .meta-cell { padding: 16px 18px; }
+    .meta-value { font-size: 18px; }
+
+    /* Logo revamp */
+    .reason-text, .reason-notes { padding: 24px; }
+    .reason-text h3 { font-size: 26px; }
+    .reason-text p { font-size: 14px; }
+    .reason-note { padding: 14px 0; grid-template-columns: 30px 1fr; gap: 12px; }
+    .reason-note .pin { width: 26px; height: 26px; font-size: 10px; }
+    .reason-note .body strong { font-size: 14px; }
+    .reason-note .body span { font-size: 13px; }
+
+    .logo-card { aspect-ratio: 1.4; }
+    .logo-tag, .logo-name, .logo-pricetag { font-size: 9px; }
+    .logo-tag { top: 14px; left: 14px; }
+    .logo-name { bottom: 14px; left: 14px; font-size: 12px; }
+    .logo-pricetag { bottom: 14px; right: 14px; }
+
+    .merch-side { padding: 24px; }
+    .merch-side h3 { font-size: 22px; }
+    .merch-side p { font-size: 14px; margin-bottom: 18px; }
+    .drop-list li { padding: 12px 0; font-size: 11px; }
+    .merch-card { min-height: 320px; }
+
+    /* Events */
+    .event-card { padding: 22px; }
+    .event-card h3 { font-size: 24px; }
+    .event-card p { font-size: 13px; margin-bottom: 20px; }
+    .stat-row { margin: 0 -22px; }
+    .stat-cell { padding: 14px 22px; }
+    .stat-cell .val { font-size: 16px; }
+
+    /* Tiers */
+    .tier-card { padding: 26px 22px; }
+    .tier-card.member::before { left: 22px; }
+    .tier-price { font-size: 48px; }
+    .tier-price .per { font-size: 13px; }
+    .tier-blurb { font-size: 13px; margin-bottom: 22px; padding-bottom: 22px; }
+    .tier-list li { font-size: 13px; padding: 12px 0; gap: 12px; }
+    .tier-list li .lil { font-size: 11px; }
+
+    /* Receipt */
+    .receipt { padding: 28px 22px; }
+    .receipt-head .brand { font-size: 18px; }
+    .receipt-row { font-size: 12px; padding: 8px 0; }
+
+    /* Revenue */
+    .rev-card { padding: 22px; }
+    .rev-stage-name { margin-bottom: 18px; padding-bottom: 18px; }
+    .rev-members { font-size: 44px; }
+    .rev-members-lbl { margin-bottom: 18px; }
+    .rev-net .num { font-size: 30px; }
+    .rev-foot { padding: 20px; }
+    .rev-foot-block p { font-size: 12px; }
+
+    /* Strava */
+    .strava-card { padding: 24px; }
+    .strava-head { margin-bottom: 28px; }
+    .strava-head .left h3 { font-size: 22px; }
+    .strava-head .right .big { font-size: 20px; }
+    .strava-stats { grid-template-columns: repeat(2, 1fr); margin-bottom: 22px; }
+    .strava-stats .ss-cell:last-child { grid-column: span 2; text-align: center; }
+    .ss-cell { padding: 16px 10px; }
+    .ss-cell .num { font-size: 22px; }
+    .ss-cell .lbl { font-size: 9px; }
+    .route-svg { height: 80px; }
+    .route-info {
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+    }
+
+    /* Vegas */
+    .vegas-main, .vegas-side { padding: 24px; }
+    .vegas-main h3 { font-size: 28px; margin-bottom: 12px; }
+    .vegas-main p { font-size: 14px; margin-bottom: 20px; }
+    .spots li {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      gap: 4px;
+      padding: 12px 0;
+    }
+    .spots .num { font-size: 10px; }
+    .spots .name { font-size: 14px; }
+    .spots .meta { font-size: 10px; justify-self: start; }
+
+    /* Footer */
+    footer .row {
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 9px;
+    }
+  }
+
+  /* ========== TIGHT PHONE ========== */
+  @media (max-width: 380px) {
+    .wordmark { font-size: 19vw; }
+    .hero-tag { font-size: 19px; }
+    .topbar-inner { font-size: 9px; }
   }
 </style>
 </head>
